@@ -1,0 +1,49 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+directive @upper on FIELD_DEFINITION
+
+type ListRepositoryModel {
+  name: String!
+  owner: String!
+  size: Float!
+}
+
+type GetRepositoriesResponseDTO {
+  repositories: [ListRepositoryModel!]!
+  total: Float!
+}
+
+type Webhook {
+  name: String!
+}
+
+type DetailedRepositoryModel {
+  name: String!
+  owner: String!
+  size: Float!
+  isPrivate: Boolean!
+  fileCount: Float!
+  ymlContent: String
+  activeWebhooks: [Webhook!]!
+}
+
+type GetRepositoryResponseDTO {
+  repository: DetailedRepositoryModel
+}
+
+type Query {
+  getRepositories(input: GetRepositoriesInputDTO!): GetRepositoriesResponseDTO!
+  getRepository(input: GetRepositoryInputDTO!): GetRepositoryResponseDTO!
+}
+
+input GetRepositoriesInputDTO {
+  token: String!
+}
+
+input GetRepositoryInputDTO {
+  token: String!
+  name: ID!
+  owner: ID!
+}
